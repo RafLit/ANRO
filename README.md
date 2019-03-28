@@ -18,7 +18,7 @@ steering.py (skrypt pythona pobierający klawisze)
 
 Opis działania:
 
-steering.py wczytuje klawisze, jeżeli wciśnięty jeden z  [w,a,s,d], to ustawia parametry [front,left,back,right] na serwerze
+steering.launch wczytuje z plliku steering_params.yaml parametry. Parametry pobieramy w skrypcie steering.py.
 
 Kod programu:
  
