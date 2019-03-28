@@ -1,5 +1,6 @@
 # anro-litka_michalski
 SPRAWOZDANIE
+
 Rafał Litka
 Marcin Michalski
 
@@ -14,6 +15,10 @@ Schemat:
 
 Opis plików:
 steering.py (skrypt pythona pobierający klawisze)
+
+Opis działania:
+
+steering.py wczytuje klawisze, jeżeli wciśnięty jeden z  [w,a,s,d], to ustawia parametry [front,left,back,right] na serwerze
 
 Kod programu:
  
