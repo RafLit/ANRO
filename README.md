@@ -6,7 +6,7 @@ Marcin Michalski
 
 Uruchomienie:
 
-uruchamiamy plik z anro-litka-michalski/catkin_ws/src/beginner_tutorials/launch/steering.launch
+uruchamiamy roslaunch beginners_tutorial steering.launch
 z tego pliku uruchamia się skrypt steering.py
 
 
