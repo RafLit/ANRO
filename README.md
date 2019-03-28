@@ -6,8 +6,7 @@ Marcin Michalski
 
 Uruchomienie:
 
-uruchamiamy roslaunch beginners_tutorial steering.launch
-z tego pliku uruchamia się skrypt steering.py
+uruchamiamy roslaunch beginners_tutorials steering.launch
 
 
 Schemat:
