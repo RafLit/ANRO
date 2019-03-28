@@ -11,7 +11,7 @@ z tego pliku uruchamia się skrypt steering.py
 
 
 Schemat:
-![alt schemat](https://github.com/pw-eiti-anro-19l/anro-litka_michalski/blob/master/schemat.png)
+![alt schemat](https://github.com/pw-eiti-anro-19l/anro-litka_michalski/blob/master/rosgraph.png)
 
 Opis plików:
 steering.py (skrypt pythona pobierający klawisze)
