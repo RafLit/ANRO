@@ -9,7 +9,7 @@ z tego pliku uruchamia się skrypt steering.py
 
 
 Schemat:
-[[schemat.png]]
+[[/master/schemat.png]]
 
 Opis plików:
 steering.py (skrypt pythona pobierający klawisze)
