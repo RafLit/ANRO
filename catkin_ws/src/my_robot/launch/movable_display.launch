@@ -1,4 +1,5 @@
 <launch>
+    <rosparam command="load" file="$(find my_robot)/param/3dhparams.yaml"/>
     <rosparam command="load" file="$(find my_robot)/param/params.yaml"/>
     <param name="robot_description" command="xacro --inorder '$(find my_robot)/urdf/mov.urdf'"/>
     <!--<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>-->
