@@ -2,6 +2,7 @@ import json
 from tf.transformations import *
 import rospy
 import sys
+from collections import OrderedDict
 x_ax = (1,0,0)
 y_ax = (0,1,0)
 z_ax = (0,0,1)
@@ -9,9 +10,9 @@ z_ax = (0,0,1)
 def convert(filename):
     params = {}
     with open(filename, 'r') as file:
-        params=json.loads(file.read())
+        params=OrderedDict(json.loads(file.read()))
 
-    with open('../dhparams.yaml', 'w') as file:
+    with open('../param/dhparams.yaml', 'w') as file:
         for key in params.keys():
             a, d, al, th = params[key]
             a, d, al, th = map(float, (a, d, al, th))
@@ -32,6 +33,19 @@ def convert(filename):
             file.write("    link_xyz: {} 0 0\n".format(x/2))
             file.write("    link_rpy: 0 0 0\n")
             file.write("    link_l: {}\n".format(a))
+    with open('../param/3dhparams.yaml','w') as file:
+        i = 1
+        file.write("arm:\n")
+        for key in params.keys():
+            a, d, al, th = params[key]
+            a, d, al, th = map(float, (a, d, al, th))
+
+            file.write("    {}:\n".format(key))
+            file.write("        a: {}\n".format(a))
+            file.write("        al: {}\n".format(al))
+            file.write("        d: {}\n".format(d))
+            file.write("        th: {}\n".format(th))
+            i+=1
 
 
 
