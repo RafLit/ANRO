@@ -5,7 +5,6 @@
     <node name="NONKDL_DKIN" type="NONKDL_DKIN.py" pkg="my_robot"/>
     <node name="KDL_DKIN" type="KDL_DKIN.py" pkg="my_robot"/>
     <node name="robot_state_publisher" type="robot_state_publisher" pkg="robot_state_publisher"/>
-    <node name="rviz" type="rviz" pkg="rviz" args="-d $(find my_robot)/rviz/3labRvizConfig.rviz"/>
     <node name="joint_state_publisher" type="joint_state_publisher" pkg="joint_state_publisher">
         <param name="use_gui" value="true"/>
     </node>
