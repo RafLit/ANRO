@@ -10,10 +10,12 @@ project(my_robot)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  message_generation
   sensor_msgs
   geometry_msgs
   std_msgs
   tf
+  visualization_msgs
 )
 find_package(orocos_kdl REQUIRED)
 
@@ -57,12 +59,12 @@ find_package(orocos_kdl REQUIRED)
 #   Message2.msg
 # )
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+# Generate services in the 'srv' folder
+ add_service_files(
+   FILES
+   Jint_Control.srv
+   Oint_Control.srv
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -72,10 +74,10 @@ find_package(orocos_kdl REQUIRED)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   sensor_msgs#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   sensor_msgs   std_msgs   geometry_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
