@@ -48,6 +48,7 @@ def processRequest(msg):
     to_save = JointState()
     if not mode:
         while rospy.Time.now() < end_of_interpolation:
+            rate.sleep()
             joint_states = JointState()
             joint_states.header.stamp = rospy.Time.now()
             joint_states.header.frame_id = 'base_link'
@@ -55,6 +56,7 @@ def processRequest(msg):
             for i,joint in enumerate(positions):
                 joint_states.position.append(last_positions[i] + ((positions[i]-last_positions[i])/(end_of_interpolation.to_sec()-start_of_interpolation.to_sec()))*(rospy.Time.now().to_sec()-start_of_interpolation.to_sec()))
             pub.publish(joint_states)
+            publishTrace(time)
         last_positions = positions
     else:
         x0 = 0.

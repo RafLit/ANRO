@@ -72,6 +72,7 @@ def processRequest(msg):
             msg.pose.orientation = quat_msg
             msg.pose.position = Point(*now_pos)
             pub.publish(msg)
+            publishTrace(time,*now_pos)
         last_pos = new_pos
         last_rpy = new_rpy
     else:
