@@ -51,7 +51,7 @@ def processRequest(msg):
         return 'wrong size of position'
     if not len(last_rpy)==len(new_rpy):
         return 'wrong size of orientation'
-    if time<0.:
+    if time<=0.:
         return 'wrong time'
     end_of_interpolation = rospy.Time.now()+rospy.Duration(time)
     start_of_interpolation = rospy.Time.now()
