@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
+from math import pi
 from my_robot.srv import Jint_Control
 from sensor_msgs.msg import JointState
 from tf.transformations import *
@@ -11,6 +12,7 @@ last_positions = [0,0,0]
 viz_pub = rospy.Publisher('/jint_trace',Marker,queue_size=10)
 pub = rospy.Publisher('joint_states',JointState,queue_size=10)
 i=0
+eps = 0.0001
 msg = Marker()
 def publishTrace(time):
     global viz_pub
@@ -34,19 +36,21 @@ def publishTrace(time):
     viz_pub.publish(msg)
 
 def processRequest(msg):
+    global eps
     global last_positions
     mode = msg.mode
     time = msg.time
     positions = msg.pos
     if  not len(last_positions) == len(positions):
         return "wrong size of positions"
-    if time<0.:
+    if time<=0.:
         return "wrong time"
     end_of_interpolation = rospy.Time.now() + rospy.Duration(time)
     start_of_interpolation = rospy.Time.now()
     rate = rospy.Rate(200)
     to_save = JointState()
     if not mode:
+        x_positions = last_positions
         while rospy.Time.now() < end_of_interpolation:
             rate.sleep()
             joint_states = JointState()
@@ -54,10 +58,17 @@ def processRequest(msg):
             joint_states.header.frame_id = 'base_link'
             joint_states.name = ['joint1','joint2','joint3']
             for i,joint in enumerate(positions):
-                joint_states.position.append(last_positions[i] + ((positions[i]-last_positions[i])/(end_of_interpolation.to_sec()-start_of_interpolation.to_sec()))*(rospy.Time.now().to_sec()-start_of_interpolation.to_sec()))
+                joint_states.position.append(x_positions[i] + ((positions[i]-x_positions[i])/(end_of_interpolation.to_sec()-start_of_interpolation.to_sec()))*(rospy.Time.now().to_sec()-start_of_interpolation.to_sec()))
+            if  not -pi - eps <joint_states.position[1]<0. + eps:
+                rospy.logerr('joint has reached its limit!')
+                return 'joint 2 has reached its limit!'
+            if not -pi/2. - eps <joint_states.position[2]<pi/2. + eps:
+                rospy.logerr('joint has reached its limit!')
+                return 'joint 3 has reached its limit!'
+
             pub.publish(joint_states)
             publishTrace(time)
-        last_positions = positions
+            last_positions = joint_states.position
     else:
         x0 = 0.
         x1 = time
@@ -80,9 +91,15 @@ def processRequest(msg):
             joint_states.position = [a_*t**3 + b_*t**2 + c_*t + d_ for a_,b_,c_,d_ in zip(a,b,c,d)]
             joint_states.header.frame_id = 'base_link'
             joint_states.name = ['joint1','joint2','joint3']
+            if  not -pi<joint_states.position[1]<0.:
+                rospy.logerr('joint has reached its limit!')
+                return 'joint 2 has reached its limit!'
+            if not -pi/2.<joint_states.position[2]<pi/2.:
+                rospy.logerr('joint has reached its limit!')
+                return 'joint 3 has reached its limit!'
             pub.publish(joint_states)
             publishTrace(time)
-        last_positions = positions
+            last_positions = joint_states.position
 
     return 'done'
 rospy.init_node('jint')
