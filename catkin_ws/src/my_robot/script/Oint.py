@@ -46,7 +46,7 @@ def processRequest(msg):
     new_rpy = msg.rpy
     time = msg.time
     mode = msg.mode
-    rate = rospy.Rate(200)
+    rate = rospy.Rate(50)
     if not len(last_pos)==len(new_pos):
         return 'wrong size of position'
     if not len(last_rpy)==len(new_rpy):
@@ -59,7 +59,7 @@ def processRequest(msg):
         while rospy.Time.now()<end_of_interpolation:
             rate.sleep()
             msg = PoseStamped()
-            msg.header.frame_id = 'base_link'
+            msg.header.frame_id = 'link0'
             msg.header.stamp = rospy.Time.now()
             now_rpy=[]
             now_pos=[]

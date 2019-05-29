@@ -1,9 +1,9 @@
 s3:
-    joint_xyz: 0.4 0.0 0.0
+    joint_xyz: 0.5 0.0 0.0
     joint_rpy: 0.0 -0.0 0.0
-    link_xyz: 0.2 0 0
+    link_xyz: 0.25 0 0
     link_rpy: 0 0 0
-    link_l: 0.4
+    link_l: 0.5
 s2:
     joint_xyz: 0.0 0.0 0.0
     joint_rpy: -1.57 -0.0 0.0
