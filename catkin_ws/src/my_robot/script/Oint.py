@@ -22,12 +22,12 @@ def publishTrace(time,x,y,z):
     msg.ns = "xd"
     i += 1
     msg.id = i
-    msg.lifetime = rospy.Duration(time+3.)
+    msg.lifetime = rospy.Duration(time+10.)
     msg.type = Marker.SPHERE
     msg.action = Marker.ADD
     msg.pose.position.x = x
     msg.pose.position.y = y
-    msg.pose.position.z = z
+    msg.pose.position.z = z + 0.3
 
     msg.scale.x = 0.01
     msg.scale.y = 0.01
@@ -111,6 +111,7 @@ def processRequest(msg):
             quat_msg = Quaternion(*quat)
             msg.pose.position = Point(*now_pos)
             msg.pose.orientation = quat_msg
+            msg.pose.position.x +=0.3
             pub.publish(msg)
             publishTrace(time,*now_pos)
         last_pos = new_pos

@@ -11,11 +11,14 @@ rate_t = 20
 rate = rospy.Rate(rate_t)
 msg = Oint_ControlRequest()
 
-msg.time = 1./rate_t
+msg.time = 5
 a = 0.4
 b = 0.2
 msg.rpy = [0,0,0]
 msg.mode = 0
+move(msg)
+rospy.Duration(5).sleep()
+msg.time = 1./rate_t
 while not rospy.is_shutdown():
     th = 2*pi*(rospy.Time.now().to_sec()%period)/period
     msg.pos[0] = sin(th)*a
