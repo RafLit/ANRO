@@ -22,24 +22,14 @@ def callback(msg):
     try:
         th0 = atan2(y0,x0)
     except:
-<<<<<<< HEAD
         rospy.logerr("wrong position")
         return
-=======
-        rospy.logerr("something fucky happend")
-        sys.exit(1)
->>>>>>> 8195213071bfd5e4ed4aad57a0ef38e3446629e5
     try:
         th2 = acos(-(x0**2 + y0**2 +z0**2-a**2 -b**2)/(2*a*b)*0.999999999999999)
 
     except:
-<<<<<<< HEAD
         rospy.logerr("wrong position")
         return
-=======
-        rospy.logerr("something fucky happend")
-        sys.exit(1)
->>>>>>> 8195213071bfd5e4ed4aad57a0ef38e3446629e5
     th2x = pi - th2
     sthx = sin(th2x)
     cthx = cos(th2x)
@@ -49,14 +39,9 @@ def callback(msg):
     try:
         th1 = atan2(sth1,cth1)
     except:
-<<<<<<< HEAD
         rospy.logerr("wrong position")
         return
-=======
-        rospy.logerr("something fucky happend")
-        sys.exit(1)
->>>>>>> 8195213071bfd5e4ed4aad57a0ef38e3446629e5
-        
+
     pub_msg.name = ['joint1','joint2','joint3']
     pub_msg.position = [th0, -th1, th2x]
     pub_msg.header.stamp = rospy.Time.now()
