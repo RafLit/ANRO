@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import rospy
 import copy
 from sympy import *
@@ -22,10 +23,12 @@ def callback(msg):
         th0 = atan2(y0,x0)
     except:
         rospy.logerr("something fucky happend")
+        sys.exit(1)
     try:
         th2 = acos(-(x0**2 + y0**2 +z0**2-a**2 -b**2)/(2*a*b)*0.999999999999999)
     except:
         rospy.logerr("something fucky happend")
+        sys.exit(1)
     th2x = pi - th2
     sthx = sin(th2x)
     cthx = cos(th2x)
@@ -36,6 +39,7 @@ def callback(msg):
         th1 = atan2(sth1,cth1)
     except:
         rospy.logerr("something fucky happend")
+        sys.exit(1)
         
     pub_msg.name = ['joint1','joint2','joint3']
     pub_msg.position = [th0, -th1, th2x]
