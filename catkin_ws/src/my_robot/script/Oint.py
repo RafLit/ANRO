@@ -106,12 +106,12 @@ def processRequest(msg):
             t = rospy.Time.now().to_sec() - start_of_interpolation.to_sec()
             now_pos = [a_ * t ** 3 + b_ * t ** 2 + c_ * t + d_ for a_, b_, c_, d_ in zip(a, b, c, d)]
             now_rpy = [a2_ * t ** 3 + b2_ * t ** 2 + c2_ * t + d2_ for a2_, b2_, c2_, d2_ in zip(a2, b2, c2, d2)]
-            msg.header.frame_id = 'base_link'
+            msg.header.frame_id = 'link0'
             quat = quaternion_from_euler(*now_rpy)
             quat_msg = Quaternion(*quat)
             msg.pose.position = Point(*now_pos)
             msg.pose.orientation = quat_msg
-            msg.pose.position.x +=0.3
+
             pub.publish(msg)
             publishTrace(time,*now_pos)
         last_pos = new_pos

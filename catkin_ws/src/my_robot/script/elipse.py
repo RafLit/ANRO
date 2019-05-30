@@ -14,10 +14,12 @@ msg = Oint_ControlRequest()
 msg.time = 5
 a = 0.4
 b = 0.2
+msg.pos[0] = sin(2*pi*((rospy.Time.now().to_sec()+5.)%period)/period)*a
+msg.pos[1] = cos(2*pi*((rospy.Time.now().to_sec()+5.)%period)/period)*b
+msg.pos[2] = 0.3
 msg.rpy = [0,0,0]
-msg.mode = 0
+msg.mode = 1
 move(msg)
-rospy.Duration(5).sleep()
 msg.time = 1./rate_t
 while not rospy.is_shutdown():
     th = 2*pi*(rospy.Time.now().to_sec()%period)/period
