@@ -1,3 +1,3 @@
 <launch>
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_robot)/rviz/ikin.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_robot)/rviz/5l.rviz"/>
 </launch>
