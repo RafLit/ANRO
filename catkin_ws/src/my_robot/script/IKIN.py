@@ -18,15 +18,25 @@ def callback(msg):
     y0 = msg.pose.position.y
     z0 = msg.pose.position.z
     pub_msg = JointState()
-    th0 = atan2(y0,x0)
-    th2 = acos(-(x0**2 + y0**2 +z0**2-a**2 -b**2)/(2*a*b)*0.999999999999999)
+    try:
+        th0 = atan2(y0,x0)
+    except:
+        rospy.logerr("something fucky happend")
+    try:
+        th2 = acos(-(x0**2 + y0**2 +z0**2-a**2 -b**2)/(2*a*b)*0.999999999999999)
+    except:
+        rospy.logerr("something fucky happend")
     th2x = pi - th2
     sthx = sin(th2x)
     cthx = cos(th2x)
     cth0 = cos(th0)
     sth1 = (b*cth0*z0 + a*sthx*x0 + a*cth0*cthx*z0)/(cth0*(a**2*cthx**2 + a**2*sthx**2 + 2*a*b*cthx + b**2))
     cth1 = (b*x0 + a*cthx*x0 - a*cth0*sthx*z0)/(cth0*(a**2*cthx**2 + a**2*sthx**2 + 2*a*b*cthx + b**2))
-    th1 = atan2(sth1,cth1)
+    try:
+        th1 = atan2(sth1,cth1)
+    except:
+        rospy.logerr("something fucky happend")
+        
     pub_msg.name = ['joint1','joint2','joint3']
     pub_msg.position = [th0, -th1, th2x]
     pub_msg.header.stamp = rospy.Time.now()
