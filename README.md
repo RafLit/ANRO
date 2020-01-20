@@ -1,6 +1,6 @@
 # ANRO
 
-the main package is my_robot
+the main package is my_robot<br/>
 the robot is generated from dh parameters, stored in param directory
 
 ### launching:
