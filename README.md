@@ -52,7 +52,7 @@ roslaunch my_robot ikinEllipse.launch
 ```
 or:
 ```
-roslauch my_robot ikinSquare.launch
+roslaunch my_robot ikinSquare.launch
 ```
 
 
