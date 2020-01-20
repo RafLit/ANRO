@@ -4,6 +4,7 @@ from my_robot.srv import Oint_ControlRequest, Oint_Control
 import rospy
 from math import pi,sin,cos
 rospy.init_node('elipse')
+rospy.wait_for_service('/oint_control_srv')
 move = rospy.ServiceProxy('/oint_control_srv',Oint_Control)
 period = 8.0
 pub = rospy.Publisher('square_pub',Oint_ControlRequest,queue_size=10)

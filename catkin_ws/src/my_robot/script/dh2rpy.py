@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import json
 from tf.transformations import *
 import rospy
@@ -50,6 +51,6 @@ def convert(filename):
 
 
 if __name__ == '__main__':
-    convert("../dhpars.json")
+    convert("../param/dhpars.json")
 
 

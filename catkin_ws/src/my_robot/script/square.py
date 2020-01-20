@@ -4,6 +4,7 @@ from my_robot.srv import Oint_ControlRequest, Oint_Control
 import rospy
 
 rospy.init_node('square')
+rospy.wait_for_service('/oint_control_srv')
 move = rospy.ServiceProxy('/oint_control_srv',Oint_Control)
 rate_t = 0.5
 rate = rospy.Rate(rate_t)

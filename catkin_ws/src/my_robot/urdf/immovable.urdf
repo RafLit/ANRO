@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 
 <robot name="xd" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:property name="params" value="${load_yaml('../param/params.yaml')}"/>
+    <xacro:property name="params" value="${load_yaml('../param/dhparams.yaml')}"/>
+    <xacro:property name="link_w" value="0.1"/>
     <link name="base_link">
         <visual>
             <geometry>
@@ -11,14 +12,23 @@
         </visual>
     </link>
     <link name="link0"/>
-    <link name="link1"/>
-    <link name="link2">
+    <link name="link1">
         <visual>
             <geometry>
-                <box size="${params['a2']} 0.1 0.1"/>
+                <box size="${params['s2']['link_l']} ${link_w} ${link_w}"/>
             </geometry>
-            <origin xyz="${params['a2']/2} 0 0" rpy="0 0 0"/>
+            <origin rpy="${params['s2']['link_rpy']}" xyz="${params['s2']['link_xyz']}"/>
         </visual>
+
+    </link>
+    <link name="link2">
+         <visual>
+            <geometry>
+                <box size="${params['s3']['link_l']} ${link_w} ${link_w}"/>
+            </geometry>
+            <origin rpy="${params['s3']['link_rpy']}" xyz="${params['s3']['link_xyz']}"/>
+        </visual>
+
     </link>
     <link name="manipulator">
         <visual>
@@ -33,22 +43,22 @@
         <child link="link0"/>
         <origin xyz="0 0 0.3" rpy="0 0 0"/>
     </joint>
-    <joint name="joint1" type="continuous">
+    <joint name="joint1" type="fixed">
         <parent link="link0"/>
         <child link="link1"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="${params['s1']['joint_xyz']}" rpy="${params['s1']['joint_rpy']}"/>
         <axis xyz="0 0 1"/>
     </joint>
-    <joint name="joint2" type="continuous">
+    <joint name="joint2" type="fixed">
         <parent link="link1"/>
         <child link="link2"/>
-        <origin xyz="0 0 0" rpy="-1.57 0 0"/>
+        <origin xyz="${params['s2']['joint_xyz']}" rpy="${params['s2']['joint_rpy']}"/>
         <axis xyz="0 0 1"/>
     </joint>
-    <joint name="joint3" type="continuous">
+    <joint name="joint3" type="fixed">
         <parent link="link2"/>
         <child link="manipulator"/>
-        <origin xyz="0.5 0 0" rpy="0 0 0"/>
+        <origin xyz="${params['s3']['joint_xyz']}" rpy="${params['s3']['joint_rpy']}"/>
         <axis xyz="0 0 1"/>
     </joint>
 

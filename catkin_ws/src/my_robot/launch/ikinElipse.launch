@@ -1,6 +1,9 @@
 <launch>
+    <node name="oint" pkg="my_robot" type="IkinOint.py"/>
     <param name="robot_description" command="xacro --inorder '$(find my_robot)/urdf/movable.urdf'"/>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
-    <node name="jint" pkg="my_robot" type="Jint.py"/>
+    <node name="IKIN" pkg="my_robot" type="IKIN.py"/>
+    <node name="ellipse" pkg="my_robot" type="ellipse.py"/>
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_robot)/rviz/5l.rviz"/>
+    
 </launch>

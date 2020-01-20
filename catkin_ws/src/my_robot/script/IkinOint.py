@@ -27,7 +27,7 @@ def publishTrace(time,x,y,z):
     msg.action = Marker.ADD
     msg.pose.position.x = x
     msg.pose.position.y = y
-    msg.pose.position.z = z 
+    msg.pose.position.z = z+0.3 
 
     msg.scale.x = 0.01
     msg.scale.y = 0.01

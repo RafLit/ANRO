@@ -1,4 +1,5 @@
 <launch>
     <node name="oint" pkg="my_robot" type="Oint.py"/>
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_robot)/rviz/oint.rviz"/>
+    <node name="ellipse" pkg="my_robot" type="ellipse.py"/>
 </launch>
