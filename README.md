@@ -1,8 +1,9 @@
-#ANRO
+# ANRO
 
 the main package is my_robot
+the robot is generated from dh parameters, stored in param directory
 
-###launching:
+### launching:
 * Simple, movable model, forward kinematics:
 ```
 roslaunch my_robot movable.launch
@@ -14,11 +15,11 @@ roslaunch my_robot jint.launch
 and then:
 ```
 rosservice call /jint_control_srv "mode: 0
-time: 1.0
+time: 10.0
 pos:
-- 1.0
-- 0.0
-- 0.0"
+- 5.0
+- -0.5
+- 0.3"
 ```
 for third-degree function interpolation change the mode to 1
 
@@ -29,11 +30,11 @@ roslaunch my_robot oint.launch
 and then:
 ```
 rosservice call /oint_control_srv "mode: 0
-time: 1.0
+time: 10.0
 pos:
-- 1.0
-- 0.0
-- 0.0"
+- 5.0
+- 2.0
+- 1.0"
 ```
 for third-degree function interpolation change the mode to 1
 
